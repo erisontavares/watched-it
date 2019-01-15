@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">WatchedIt!</string>
+
+    <!-- Main screen -->
+    <string name="movies_title">Movies</string>
+    <string name="series_title">Series</string>
 </resources>
