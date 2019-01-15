@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.ContentFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,9 +17,12 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/cinema"
+            android:fontFamily="@font/permanent_marker_regular"
+            android:onClick="onMoviesButtonClick"
             android:text="@string/movies_title"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="@color/colorWhite" />
+            android:textColor="@color/colorWhite"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/button_series"
@@ -27,9 +30,12 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/series"
+            android:fontFamily="@font/permanent_marker_regular"
+            android:onClick="onSeriesButtonClick"
             android:text="@string/series_title"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="@color/colorWhite" />
+            android:textColor="@color/colorWhite"
+            android:textSize="30sp" />
     </LinearLayout>
 
-</android.support.v7.widget.ContentFrameLayout>
+</FrameLayout>
