@@ -51,7 +51,7 @@ public class MoviesSearchableActivity extends AppCompatActivity implements Searc
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.movies_search_menu, menu);
         final MenuItem searchItem = menu.findItem(R.id.movies_action_search);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        final SearchView searchView = (SearchView) searchItem.getActionView();
 
         searchView.setOnQueryTextListener(this);
 

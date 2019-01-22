@@ -1,6 +1,7 @@
 package be.pxl.erisontavares.watchedit;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import be.pxl.erisontavares.watchedit.model.Movie;
+import be.pxl.erisontavares.watchedit.utilities.Helpers;
 import be.pxl.erisontavares.watchedit.utilities.NetworkUtils;
 
 public class MoviesSearchAdapter extends RecyclerView.Adapter<MoviesSearchAdapter.MovieViewHolder> {
@@ -71,7 +73,10 @@ public class MoviesSearchAdapter extends RecyclerView.Adapter<MoviesSearchAdapte
             mTitle.setText(movie.getTitle());
             mOverview.setText(movie.getOverview());
             mVoteAverage.setText(String.valueOf(movie.getVoteAverage()));
-            mReleaseDate.setText(movie.getReleaseDate());
+
+            String parsedReleaseDate = Helpers.formateDateFromstring(Movie.RELEASE_DATE_FORMAT, "dd MMM yyyy", movie.getReleaseDate());
+
+            mReleaseDate.setText(itemView.getContext().getString(R.string.released_on, parsedReleaseDate));
 
             URL imageUrl = NetworkUtils.buildImageUrl(NetworkUtils.POSTER_SIZE_185, movie.getPosterPath());
             Picasso.get()

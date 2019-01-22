@@ -6,6 +6,9 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 public class Movie implements Parcelable {
+
+    public static final String RELEASE_DATE_FORMAT = "yyyy-MM-dd";
+
     private int id;
     private String title;
     @SerializedName("original_title")
