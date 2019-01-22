@@ -15,4 +15,6 @@
 
     <string name="error_loading_movies_message">Error loading movies</string>
     <string name="movie_poster">movie poster</string>
+
+    <string name="star_icon_description">star icon</string>
 </resources>
