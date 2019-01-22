@@ -4,4 +4,15 @@
     <!-- Main screen -->
     <string name="movies_title">Movies</string>
     <string name="series_title">Series</string>
+
+    <string name="add_movie">Add a movie</string>
+    <string name="add_series">Add a series</string>
+
+    <string name="search_title">Search</string>
+
+    <string name="movies_search_hint">Search a movie</string>
+    <string name="series_search_hint">Search a series</string>
+
+    <string name="error_loading_movies_message">Error loading movies</string>
+    <string name="movie_poster">movie poster</string>
 </resources>
