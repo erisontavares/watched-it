@@ -33,7 +33,7 @@
             android:id="@+id/search_movie_overview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorPrimaryText"
             android:ellipsize="end"
             android:maxLines="4"
             android:textSize="@dimen/font_size_item_overview" />
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="70"
                 android:textAlignment="textStart"
-                android:textColor="@color/colorText"
+                android:textColor="@color/colorSecondaryText"
                 android:textSize="@dimen/font_size_item_details" />
 
             <TextView
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="30"
                 android:textAlignment="textEnd"
-                android:textColor="@color/colorText"
+                android:textColor="@color/colorSecondaryText"
                 android:textSize="@dimen/font_size_item_details" />
 
         </LinearLayout>
