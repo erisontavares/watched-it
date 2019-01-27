@@ -1,7 +1,6 @@
 package be.pxl.erisontavares.watchedit;
 
 import android.os.AsyncTask;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -61,7 +60,7 @@ public class MoviesSearchableActivity extends AppCompatActivity implements Searc
     @Override
     public boolean onQueryTextSubmit(String query) {
         try {
-            URL moviesUrl = NetworkUtils.buildSearchMovieUrlwithQuery(query, 1);
+            URL moviesUrl = NetworkUtils.buildSearchMovieUrlWithQuery(query, 1);
             new MoviesQueryTask().execute(moviesUrl);
         } catch (Exception e) {
             Log.d("Error", e.getMessage());
@@ -92,6 +91,7 @@ public class MoviesSearchableActivity extends AppCompatActivity implements Searc
         @Override
         protected void onPostExecute(String result) {
             mLoadingProgress.setVisibility(View.INVISIBLE);
+
             if (result == null) {
                 rvMovies.setVisibility(View.INVISIBLE);
                 mErrorTextView.setVisibility(View.VISIBLE);

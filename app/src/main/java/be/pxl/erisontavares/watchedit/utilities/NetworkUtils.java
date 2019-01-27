@@ -47,7 +47,7 @@ public final class NetworkUtils {
     private static final Type MOVIES_SEARCH_RESULT = new TypeToken<SearchResult<Movie>>() {
     }.getType();
 
-    public static URL buildSearchMovieUrlwithQuery(String query, int pageNumber) {
+    public static URL buildSearchMovieUrlWithQuery(String query, int pageNumber) {
         Uri searchMovieQueryUri = Uri.parse(BASE_API_URL).buildUpon()
                 .appendPath(SEARCH_PATH)
                 .appendPath(MOVIE_SEARCH_PATH)
@@ -86,24 +86,6 @@ public final class NetworkUtils {
     }
 
     public static String getResponseFromHttpUrl(URL url) throws IOException {
-//        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-//        try {
-//            InputStream in = urlConnection.getInputStream();
-//
-//            Scanner scanner = new Scanner(in);
-//            scanner.useDelimiter("\\A");
-//
-//            boolean hasInput = scanner.hasNext();
-//            String response = null;
-//            if (hasInput) {
-//                response = scanner.next();
-//            }
-//            scanner.close();
-//            return response;
-//        } finally {
-//            urlConnection.disconnect();
-//        }
-
         Request request = new Request.Builder()
                 .url(url)
                 .build();
