@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onMoviesButtonClick(View view) {
-        Intent moviesIntent = new Intent(MainActivity.this, MoviesActivity.class);
+        Intent moviesIntent = new Intent(MainActivity.this, MovieListActivity.class);
         startActivity(moviesIntent);
     }
 

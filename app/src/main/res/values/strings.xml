@@ -21,4 +21,9 @@
     <string name="add">Add</string>
     <string name="remove">Remove</string>
     <string name="movie_already_added">Already added</string>
+    <string name="title_movie_list">Movies</string>
+    <string name="title_movie_detail">Movie Detail</string>
+    <string name="movie_backdrop">Movie backdrop</string>
+    <string name="trailer_button">Trailer</string>
+    <string name="no_trailer">No trailer</string>
 </resources>

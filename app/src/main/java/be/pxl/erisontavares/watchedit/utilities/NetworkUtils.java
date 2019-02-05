@@ -13,6 +13,7 @@ import java.net.URL;
 
 import be.pxl.erisontavares.watchedit.model.Movie;
 import be.pxl.erisontavares.watchedit.model.SearchResult;
+import be.pxl.erisontavares.watchedit.model.VideoSearchResult;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -41,6 +42,8 @@ public final class NetworkUtils {
     public static final String POSTER_SIZE_185 = "w185";
     public static final String POSTER_SIZE_342 = "w342";
     public static final String POSTER_SIZE_500 = "w500";
+    public static final String BACKDROP_SIZE_780 = "w780";
+    public static final String BACKDROP_SIZE_1280 = "w1280";
 
     private static final OkHttpClient HTTP_CLIENT = new OkHttpClient();
 
@@ -85,6 +88,26 @@ public final class NetworkUtils {
         }
     }
 
+    public static URL buildMovieVideosUrl(String movieId) {
+        Uri searchMovieVideos = Uri.parse(BASE_API_URL).buildUpon()
+                .appendPath(MOVIE_SEARCH_PATH)
+                .appendPath(movieId)
+                .appendPath("videos")
+                .appendQueryParameter(API_KEY_PARAM, API_KEY)
+                .appendQueryParameter(LANGUAGE_PARAM, LANGUAGE)
+                .build();
+
+        try {
+            URL searchMovieVideosUrl = new URL(searchMovieVideos.toString());
+            Log.d(TAG, "Videos URL: " + searchMovieVideosUrl);
+            return searchMovieVideosUrl;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            Log.e(TAG, e.getMessage());
+            return null;
+        }
+    }
+
     public static String getResponseFromHttpUrl(URL url) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
@@ -102,5 +125,14 @@ public final class NetworkUtils {
         result = gson.fromJson(jsonString, MOVIES_SEARCH_RESULT);
 
         return result;
+    }
+
+    public static VideoSearchResult getVideoSearchResultFromJson(String jsonString) {
+        VideoSearchResult videoSearchResult = null;
+        Gson gson = new Gson();
+
+        videoSearchResult = gson.fromJson(jsonString, VideoSearchResult.class);
+
+        return videoSearchResult;
     }
 }

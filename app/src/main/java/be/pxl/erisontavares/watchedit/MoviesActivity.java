@@ -31,16 +31,16 @@ public class MoviesActivity extends AppCompatActivity implements LoaderManager.L
 
         getSupportLoaderManager().initLoader(URL_LOADER, null, this);
 
-        rvMovies = findViewById(R.id.movies_recycler_view);
-        LinearLayoutManager moviesLayoutManager = new LinearLayoutManager(this,
-                LinearLayoutManager.VERTICAL, false);
-
-        rvMovies.setLayoutManager(moviesLayoutManager);
-        rvMovies.setHasFixedSize(true);
-
-        mMoviesAdapter = new MoviesAdapter(this);
-
-        rvMovies.setAdapter(mMoviesAdapter);
+//        rvMovies = findViewById(R.id.movies_recycler_view);
+//        LinearLayoutManager moviesLayoutManager = new LinearLayoutManager(this,
+//                LinearLayoutManager.VERTICAL, false);
+//
+//        rvMovies.setLayoutManager(moviesLayoutManager);
+//        rvMovies.setHasFixedSize(true);
+//
+//        mMoviesAdapter = new MoviesAdapter(this, mParentActivity, false);
+//
+//        rvMovies.setAdapter(mMoviesAdapter);
     }
 
     @Override

@@ -33,10 +33,6 @@ public class MoviesSearchAdapter extends RecyclerView.Adapter<MoviesSearchAdapte
 
     List<Movie> movies;
 
-//    public MoviesSearchAdapter(List<Movie> movies) {
-//        this.movies = movies;
-//    }
-
     public MoviesSearchAdapter() {
         this.movies = new ArrayList<Movie>();
     }
@@ -109,6 +105,7 @@ public class MoviesSearchAdapter extends RecyclerView.Adapter<MoviesSearchAdapte
                 MoviesEntry.COLUMN_VOTE_AVERAGE,
                 MoviesEntry.COLUMN_RELEASE_DATE,
                 MoviesEntry.COLUMN_POSTER_PATH,
+                MoviesEntry.COLUMN_BACKDROP_PATH,
                 MoviesEntry.COLUMN_ADDED_DATE
         };
         String selection = MoviesEntry._ID + "=?";
