@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">WatchedIt!</string>
+    <string name="app_name">Watched It!</string>
 
     <!-- Main screen -->
     <string name="movies_title">Movies</string>
     <string name="series_title">Series</string>
+    <string name="settings_title">Settings</string>
 
     <string name="add_movie">Add a movie</string>
     <string name="add_series">Add a series</string>
@@ -26,4 +27,11 @@
     <string name="movie_backdrop">Movie backdrop</string>
     <string name="trailer_button">Trailer</string>
     <string name="no_trailer">No trailer</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">Your movies and series tracker</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 </resources>

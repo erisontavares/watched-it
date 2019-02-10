@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,6 +32,10 @@ public class MoviesSearchableActivity extends AppCompatActivity implements Searc
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies_searchable);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(getResources().getString(R.string.movies_search_hint));
+        setSupportActionBar(toolbar);
 
         mErrorTextView = findViewById(R.id.movie_search_error);
         mLoadingProgress = findViewById(R.id.movie_search_loading);
