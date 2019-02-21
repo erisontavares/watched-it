@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="settings_sort_entries">
+        <item>By title A-Z</item>
+        <item>By title Z-A</item>
+        <item>By date added recent - old</item>
+        <item>By date added old - recent</item>
+        <item>By release date new - old</item>
+        <item>By release date old - new</item>
+    </string-array>
+    <string-array name="settings_sort_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+</resources>

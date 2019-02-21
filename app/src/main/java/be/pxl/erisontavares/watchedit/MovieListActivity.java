@@ -1,8 +1,10 @@
 package be.pxl.erisontavares.watchedit;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
@@ -18,6 +20,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import be.pxl.erisontavares.watchedit.data.WatchedItContract;
+import be.pxl.erisontavares.watchedit.utilities.Helpers;
 
 /**
  * An activity representing a list of Movies. This activity
@@ -27,7 +30,7 @@ import be.pxl.erisontavares.watchedit.data.WatchedItContract;
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-public class MovieListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class MovieListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, SharedPreferences.OnSharedPreferenceChangeListener {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -38,6 +41,8 @@ public class MovieListActivity extends AppCompatActivity implements LoaderManage
     private static final int URL_LOADER = 100;
     private RecyclerView mMoviesList;
     private MoviesAdapter mMoviesAdapter;
+
+    private String sortOrderValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +73,15 @@ public class MovieListActivity extends AppCompatActivity implements LoaderManage
         mMoviesAdapter = new MoviesAdapter(this, this, mTwoPane);
 
         mMoviesList.setAdapter(mMoviesAdapter);
+
+//        setupSharedPreferences();
+    }
+
+    private void setupSharedPreferences() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String sortListValue = sharedPreferences.getString(getString(R.string.settings_sort_key), "1");
+        sortOrderValue = Helpers.getListSortTypeBySetting(sortListValue);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -81,8 +95,11 @@ public class MovieListActivity extends AppCompatActivity implements LoaderManage
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_settings:
+                startActivity(new Intent(MovieListActivity.this, SettingsActivity.class));
+                return true;
             case R.id.movie_search:
-                Log.i(MoviesActivity.class.getName(), "Add movie clicked!!");
+                Log.i(MovieListActivity.class.getName(), "Add movie clicked!!");
                 startActivity(new Intent(this, MoviesSearchableActivity.class));
                 return true;
             default:
@@ -93,6 +110,8 @@ public class MovieListActivity extends AppCompatActivity implements LoaderManage
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int i, @Nullable Bundle bundle) {
+        setupSharedPreferences();
+
         String[] projection = {WatchedItContract.MoviesEntry._ID,
                 WatchedItContract.MoviesEntry.COLUMN_TITLE,
                 WatchedItContract.MoviesEntry.COLUMN_OVERVIEW,
@@ -102,11 +121,14 @@ public class MovieListActivity extends AppCompatActivity implements LoaderManage
                 WatchedItContract.MoviesEntry.COLUMN_BACKDROP_PATH,
                 WatchedItContract.MoviesEntry.COLUMN_ADDED_DATE
         };
+
+        Log.d("List sort setting", sortOrderValue);
+
         return new CursorLoader(
                 this,
                 WatchedItContract.MoviesEntry.CONTENT_URI,
                 projection,
-                null, null, null
+                null, null, sortOrderValue
         );
     }
 
@@ -118,5 +140,19 @@ public class MovieListActivity extends AppCompatActivity implements LoaderManage
     @Override
     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
         mMoviesAdapter.swapCursor(null);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.settings_sort_key))) {
+            LoaderManager.getInstance(this).restartLoader(URL_LOADER, null, this);
+            Log.d("MovieListActivity", "Sorting list changes");
+        }
     }
 }

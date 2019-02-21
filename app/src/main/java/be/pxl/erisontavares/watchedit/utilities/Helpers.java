@@ -29,4 +29,23 @@ public final class Helpers {
 
         return outputDate;
     }
+
+    // TODO: Refactor this method to arrays values
+    public static String getListSortTypeBySetting(String value) {
+        switch (value) {
+            case "1":
+                return "title ASC";
+            case "2":
+                return "title DESC";
+            case "3":
+                return "added_date DESC";
+            case "4":
+                return "added_date ASC";
+            case "5":
+                return "release_date DESC";
+            case "6":
+                return "release_date ASC";
+        }
+        return "";
+    }
 }
