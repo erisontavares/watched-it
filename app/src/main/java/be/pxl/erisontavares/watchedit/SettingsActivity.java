@@ -1,6 +1,7 @@
 package be.pxl.erisontavares.watchedit;
 
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +23,7 @@ public class SettingsActivity extends BaseActivity implements SharedPreferences.
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        setAppTheme(isDarkTheme);
+//        setAppTheme(isDarkTheme);
         sharedPref.registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -47,13 +48,21 @@ public class SettingsActivity extends BaseActivity implements SharedPreferences.
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        sharedPref.unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.settings_theme_key))) {
             Log.d("Settings", "Theme changed");
             recreate();
-//            startActivity(getIntent());
-//            finish();
-//            overridePendingTransition(0, 0);
+//            Bundle savedInstanceState = new Bundle();
+//            onSaveInstanceState(savedInstanceState);
+//            super.onDestroy();
+//
+//            onCreate(savedInstanceState);
         }
     }
 }

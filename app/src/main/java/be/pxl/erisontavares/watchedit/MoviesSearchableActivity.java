@@ -1,8 +1,9 @@
 package be.pxl.erisontavares.watchedit;
 
+import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -24,7 +25,8 @@ public class MoviesSearchableActivity extends BaseActivity implements SearchView
 
     private TextView mErrorTextView;
     private ProgressBar mLoadingProgress;
-    private RecyclerView rvMovies;
+    private RecyclerView mMoviesRecyclerView;
+    public final static String RECYCLER_STATE_KEY = "recycler_view_state";
 
     private MoviesSearchAdapter mMoviesSearchAdapter;
 
@@ -39,16 +41,29 @@ public class MoviesSearchableActivity extends BaseActivity implements SearchView
 
         mErrorTextView = findViewById(R.id.movie_search_error);
         mLoadingProgress = findViewById(R.id.movie_search_loading);
-        rvMovies = findViewById(R.id.search_movies_recycler_view);
+        mMoviesRecyclerView = findViewById(R.id.search_movies_recycler_view);
 
         LinearLayoutManager moviesLayoutManager = new LinearLayoutManager(this,
                 LinearLayoutManager.VERTICAL, false);
 
-        rvMovies.setLayoutManager(moviesLayoutManager);
-        rvMovies.setHasFixedSize(true);
+        mMoviesRecyclerView.setLayoutManager(moviesLayoutManager);
+        mMoviesRecyclerView.setHasFixedSize(true);
+
+        if (savedInstanceState != null) {
+            Parcelable listState = savedInstanceState.getParcelable(RECYCLER_STATE_KEY);
+            Log.d("Search RV", "saved state is not null!!!");
+            mMoviesRecyclerView.getLayoutManager().onRestoreInstanceState(listState);
+        }
 
         mMoviesSearchAdapter = new MoviesSearchAdapter(isDarkTheme);
-        rvMovies.setAdapter(mMoviesSearchAdapter);
+        mMoviesRecyclerView.setAdapter(mMoviesSearchAdapter);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Parcelable listState = mMoviesRecyclerView.getLayoutManager().onSaveInstanceState();
+        outState.putParcelable(RECYCLER_STATE_KEY, listState);
     }
 
     @Override
@@ -60,6 +75,17 @@ public class MoviesSearchableActivity extends BaseActivity implements SearchView
         searchView.setOnQueryTextListener(this);
 
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
+            default:
+                return false;
+        }
     }
 
     @Override
@@ -98,10 +124,10 @@ public class MoviesSearchableActivity extends BaseActivity implements SearchView
             mLoadingProgress.setVisibility(View.INVISIBLE);
 
             if (result == null) {
-                rvMovies.setVisibility(View.INVISIBLE);
+                mMoviesRecyclerView.setVisibility(View.INVISIBLE);
                 mErrorTextView.setVisibility(View.VISIBLE);
             } else {
-                rvMovies.setVisibility(View.VISIBLE);
+                mMoviesRecyclerView.setVisibility(View.VISIBLE);
                 mErrorTextView.setVisibility(View.INVISIBLE);
             }
 

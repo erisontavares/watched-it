@@ -25,11 +25,6 @@
         <item name="popupTheme">@style/AppTheme.PopupOverlayDark</item>
     </style>
 
-    <!--<style name="AppTheme.NoActionBar">-->
-        <!--<item name="windowActionBar">false</item>-->
-        <!--<item name="windowNoTitle">true</item>-->
-    <!--</style>-->
-
     <style name="AppTheme.ActionBar" parent="AppTheme">
         <item name="actionBarTheme">@style/AppTheme.AppBarOverlay</item>
         <item name="windowActionBar">true</item>

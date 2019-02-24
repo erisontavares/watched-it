@@ -35,6 +35,7 @@
         </activity>
         <activity
             android:name=".MovieDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_movie_detail"
             android:parentActivityName=".MovieListActivity">
             <meta-data

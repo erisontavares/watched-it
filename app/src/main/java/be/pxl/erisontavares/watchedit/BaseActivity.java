@@ -12,11 +12,10 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         isDarkTheme = sharedPref.getBoolean(getString(R.string.settings_theme_key), false);
         setAppTheme(isDarkTheme);
+        super.onCreate(savedInstanceState);
     }
 
     @Override

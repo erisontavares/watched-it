@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -54,7 +55,7 @@ public class MovieListActivity extends BaseActivity implements LoaderManager.Loa
 
         if (findViewById(R.id.movie_detail_container) != null) {
             // The detail container view will be present only in the
-            // large-screen layouts (res/values-w900dp).
+            // landscape mode.
             // If this view is present, then the
             // activity should be in two-pane mode.
             mTwoPane = true;
@@ -72,6 +73,7 @@ public class MovieListActivity extends BaseActivity implements LoaderManager.Loa
         mMoviesAdapter = new MoviesAdapter(this, this, mTwoPane);
 
         mMoviesList.setAdapter(mMoviesAdapter);
+        mMoviesList.addItemDecoration(new DividerItemDecoration(mMoviesList.getContext(), DividerItemDecoration.VERTICAL));
         sharedPref.registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -141,7 +143,7 @@ public class MovieListActivity extends BaseActivity implements LoaderManager.Loa
     @Override
     public void onDestroy() {
         super.onDestroy();
-        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
+        sharedPref.unregisterOnSharedPreferenceChangeListener(this);
     }
 
     @Override
