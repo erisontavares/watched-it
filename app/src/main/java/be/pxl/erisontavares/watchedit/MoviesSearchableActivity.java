@@ -20,7 +20,7 @@ import java.net.URL;
 import be.pxl.erisontavares.watchedit.model.SearchResult;
 import be.pxl.erisontavares.watchedit.utilities.NetworkUtils;
 
-public class MoviesSearchableActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class MoviesSearchableActivity extends BaseActivity implements SearchView.OnQueryTextListener {
 
     private TextView mErrorTextView;
     private ProgressBar mLoadingProgress;
@@ -47,7 +47,7 @@ public class MoviesSearchableActivity extends AppCompatActivity implements Searc
         rvMovies.setLayoutManager(moviesLayoutManager);
         rvMovies.setHasFixedSize(true);
 
-        mMoviesSearchAdapter = new MoviesSearchAdapter();
+        mMoviesSearchAdapter = new MoviesSearchAdapter(isDarkTheme);
         rvMovies.setAdapter(mMoviesSearchAdapter);
     }
 

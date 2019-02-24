@@ -7,14 +7,36 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="primaryTextColor">@color/colorPrimaryText</item>
+        <item name="secondaryTextColor">@color/colorSecondaryText</item>
+        <item name="buttonTextColor">@color/buttonText</item>
+        <item name="popupTheme">@style/AppTheme.PopupOverlay</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="AppThemeDark" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/darkColorPrimary</item>
+        <item name="colorPrimaryDark">@color/darkColorPrimaryDark</item>
+        <item name="colorAccent">@color/darkColorAccent</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="primaryTextColor">@color/darkColorPrimaryText</item>
+        <item name="secondaryTextColor">@color/darkColorSecondaryText</item>
+        <item name="buttonTextColor">@color/buttonText</item>
+        <item name="popupTheme">@style/AppTheme.PopupOverlayDark</item>
     </style>
 
-    <style name="AppTheme.ActionBar">
+    <!--<style name="AppTheme.NoActionBar">-->
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="windowNoTitle">true</item>-->
+    <!--</style>-->
+
+    <style name="AppTheme.ActionBar" parent="AppTheme">
+        <item name="actionBarTheme">@style/AppTheme.AppBarOverlay</item>
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+    </style>
+
+    <style name="AppThemeDark.ActionBar" parent="AppThemeDark">
         <item name="actionBarTheme">@style/AppTheme.AppBarOverlay</item>
         <item name="windowActionBar">true</item>
         <item name="windowNoTitle">false</item>
@@ -23,5 +45,6 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.PopupOverlayDark" parent="ThemeOverlay.AppCompat.Dark" />
 
 </resources>

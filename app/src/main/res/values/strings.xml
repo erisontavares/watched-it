@@ -38,4 +38,8 @@
     <string name="settings_sort_title">Sort movies list</string>
     <string name="settings_sort_summary">Choose how to sort your movies list</string>
     <string name="settings_sort_key">key_movies_sorting</string>
+
+    <string name="settings_theme_title">Dark theme</string>
+    <string name="settings_theme_summary">Enable or disable dark theme</string>
+    <string name="settings_theme_key">key_app_theme</string>
 </resources>

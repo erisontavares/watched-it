@@ -2,7 +2,7 @@ package be.pxl.erisontavares.watchedit;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.preference.CheckBoxPreference;
+import android.support.v14.preference.SwitchPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
@@ -38,7 +38,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         for (int i = 0; i < count; i++) {
             Preference p = prefScreen.getPreference(i);
             // TODO: Remove if no checkbox pref is necessary
-            if (!(p instanceof CheckBoxPreference)) {
+            if (!(p instanceof SwitchPreference)) {
                 String value = sharedPreferences.getString(p.getKey(), "");
                 setPreferenceSummary(p, value);
             }
@@ -61,19 +61,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-//        Activity activity = getActivity();
-
-//        if (key.equals(getString(R.string.settings_sort_key))) {
-//            SunshinePreferences.resetLocationCoordinates(activity);
-//            SunshineSyncUtils.startImmediateSync(activity);
-//        } else if (key.equals(getString(R.string.pref_units_key))) {
-//            // units have changed. update lists of weather entries accordingly
-//            activity.getContentResolver().notifyChange(WeatherContract.WeatherEntry.CONTENT_URI, null);
-//        }
         Preference preference = findPreference(key);
         if (null != preference) {
             // TODO: Remove if no checkbox pref is necessary
-            if (!(preference instanceof CheckBoxPreference)) {
+            if (!(preference instanceof SwitchPreference)) {
                 setPreferenceSummary(preference, sharedPreferences.getString(key, ""));
             }
         }

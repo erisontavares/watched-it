@@ -87,6 +87,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesAdap
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
                     arguments.putParcelable(MovieDetailFragment.MOVIE_ITEM, movie);
+                    arguments.putBoolean(MovieDetailFragment.IS_DARK_THEME, mParentActivity.isDarkTheme);
+
                     MovieDetailFragment fragment = new MovieDetailFragment();
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()

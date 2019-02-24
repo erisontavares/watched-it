@@ -13,7 +13,7 @@ import android.view.MenuItem;
  * item details are presented side-by-side with a list of items
  * in a {@link MovieListActivity}.
  */
-public class MovieDetailActivity extends AppCompatActivity {
+public class MovieDetailActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,8 @@ public class MovieDetailActivity extends AppCompatActivity {
             Bundle arguments = new Bundle();
             arguments.putParcelable(MovieDetailFragment.MOVIE_ITEM,
                     getIntent().getParcelableExtra(MovieDetailFragment.MOVIE_ITEM));
+            arguments.putBoolean(MovieDetailFragment.IS_DARK_THEME, isDarkTheme);
+
             MovieDetailFragment fragment = new MovieDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()

@@ -55,7 +55,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:text="@string/trailer_button"
-            android:backgroundTint="@color/colorAccent"
+            android:backgroundTint="?attr/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -94,7 +94,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="50"
                 android:gravity="start"
-                android:textColor="@color/colorSecondaryText"
+                android:textColor="?attr/secondaryTextColor"
                 android:textSize="@dimen/font_size_item_details" />
 
         </LinearLayout>

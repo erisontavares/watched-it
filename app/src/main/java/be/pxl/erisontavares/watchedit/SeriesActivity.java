@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 
-public class SeriesActivity extends AppCompatActivity {
+public class SeriesActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

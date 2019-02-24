@@ -3,6 +3,7 @@ package be.pxl.erisontavares.watchedit;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -32,9 +33,11 @@ public class MoviesSearchAdapter extends RecyclerView.Adapter<MoviesSearchAdapte
     private static final String TAG = MoviesSearchAdapter.class.getSimpleName();
 
     List<Movie> movies;
+    private boolean mIsDarkTheme;
 
-    public MoviesSearchAdapter() {
+    public MoviesSearchAdapter(boolean isDarkTheme) {
         this.movies = new ArrayList<Movie>();
+        this.mIsDarkTheme = isDarkTheme;
     }
 
     @NonNull
@@ -58,17 +61,19 @@ public class MoviesSearchAdapter extends RecyclerView.Adapter<MoviesSearchAdapte
 
         final WatchedItQueryHandler handler = new WatchedItQueryHandler(contentResolver);
 
+        Resources resources = moviesSearchViewHolder.mAddButton.getContext().getResources();
+
         if (movieAlreadyExists) {
             moviesSearchViewHolder.mAddButton.setText(R.string.movie_already_added);
             moviesSearchViewHolder.mAddButton.setEnabled(false);
             moviesSearchViewHolder.mAddButton.setBackgroundTintList(
-                    moviesSearchViewHolder.mAddButton.getContext().getResources().getColorStateList(R.color.colorDivider)
+                    resources.getColorStateList(R.color.colorDivider)
             );
         } else {
             moviesSearchViewHolder.mAddButton.setText(R.string.add);
             moviesSearchViewHolder.mAddButton.setEnabled(true);
             moviesSearchViewHolder.mAddButton.setBackgroundTintList(
-                    moviesSearchViewHolder.mAddButton.getContext().getResources().getColorStateList(R.color.colorAccent)
+                    mIsDarkTheme ? resources.getColorStateList(R.color.darkColorAccent) : resources.getColorStateList(R.color.colorAccent)
             );
             moviesSearchViewHolder.mAddButton.setOnClickListener(new View.OnClickListener() {
                 @Override

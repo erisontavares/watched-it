@@ -10,7 +10,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -30,7 +29,7 @@ import be.pxl.erisontavares.watchedit.utilities.Helpers;
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-public class MovieListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, SharedPreferences.OnSharedPreferenceChangeListener {
+public class MovieListActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<Cursor>, SharedPreferences.OnSharedPreferenceChangeListener {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -73,15 +72,12 @@ public class MovieListActivity extends AppCompatActivity implements LoaderManage
         mMoviesAdapter = new MoviesAdapter(this, this, mTwoPane);
 
         mMoviesList.setAdapter(mMoviesAdapter);
-
-//        setupSharedPreferences();
+        sharedPref.registerOnSharedPreferenceChangeListener(this);
     }
 
-    private void setupSharedPreferences() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String sortListValue = sharedPreferences.getString(getString(R.string.settings_sort_key), "1");
+    private void getSortOrderValuePref() {
+        String sortListValue = sharedPref.getString(getString(R.string.settings_sort_key), "1");
         sortOrderValue = Helpers.getListSortTypeBySetting(sortListValue);
-        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -110,7 +106,7 @@ public class MovieListActivity extends AppCompatActivity implements LoaderManage
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int i, @Nullable Bundle bundle) {
-        setupSharedPreferences();
+        getSortOrderValuePref();
 
         String[] projection = {WatchedItContract.MoviesEntry._ID,
                 WatchedItContract.MoviesEntry.COLUMN_TITLE,

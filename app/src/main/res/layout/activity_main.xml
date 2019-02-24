@@ -17,7 +17,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="?attr/popupTheme" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -32,7 +32,7 @@
         android:onClick="onMoviesButtonClick"
         android:text="@string/movies_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:textColor="@color/colorIcons"
+        android:textColor="?attr/buttonTextColor"
         android:textSize="30sp" />
 
     <Button
@@ -46,7 +46,7 @@
         android:onClick="onSeriesButtonClick"
         android:text="@string/series_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:textColor="@color/colorIcons"
+        android:textColor="?attr/buttonTextColor"
         android:textSize="30sp" />
 
 </LinearLayout>

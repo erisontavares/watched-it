@@ -4,8 +4,19 @@
     <color name="colorPrimaryDark">#1976D2</color>
     <color name="colorPrimaryLight">#bbdefb</color>
     <color name="colorAccent">#ff5252</color>
-    <color name="colorPrimaryText">#212121</color>
+    <color name="colorPrimaryText">#454545</color>
     <color name="colorSecondaryText">#757575</color>
-    <color name="colorIcons">#FFFFFF</color>
+    <color name="buttonText">#FFFFFF</color>
     <color name="colorDivider">#BDBDBD</color>
+
+    <!--<color name="darkColorPrimary">#e53935</color>-->
+    <!--<color name="darkColorPrimaryDark">#b71c1c</color>-->
+    <color name="darkColorPrimary">#546e7a</color>
+    <color name="darkColorPrimaryDark">#37474f</color>
+    <color name="darkPrimaryLight">#80FFFFFF</color>
+    <color name="darkColorAccent">#00838f</color>
+    <color name="darkColorPrimaryText">#FFFFFFFF</color>
+    <color name="darkColorSecondaryText">#B3FFFFFF</color>
+    <color name="darkColorIcons">#FFFFFF</color>
+    <color name="darkColorDivider">#1FFFFFFF</color>
 </resources>

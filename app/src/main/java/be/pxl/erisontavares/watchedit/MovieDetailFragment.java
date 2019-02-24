@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+
 import net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -40,9 +42,11 @@ public class MovieDetailFragment extends Fragment {
      * represents.
      */
     public static final String MOVIE_ITEM = "movie_item";
+    public static final String IS_DARK_THEME = "is_dark_theme";
 
     private Movie mMovieItem;
     private Video mMovieTrailer;
+    private boolean isDarkTheme;
 
     private Button mTrailerButton;
 
@@ -59,6 +63,7 @@ public class MovieDetailFragment extends Fragment {
 
         if (getArguments().containsKey(MOVIE_ITEM)) {
             mMovieItem = getArguments().getParcelable(MOVIE_ITEM);
+            isDarkTheme = getArguments().getBoolean(IS_DARK_THEME);
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
@@ -133,7 +138,9 @@ public class MovieDetailFragment extends Fragment {
                 mTrailerButton.setEnabled(true);
                 mTrailerButton.setText(getString(R.string.trailer_button));
                 mTrailerButton.setBackgroundTintList(
-                        getContext().getResources().getColorStateList(R.color.colorAccent)
+                        isDarkTheme ?
+                                getContext().getResources().getColorStateList(R.color.darkColorAccent)
+                                : getContext().getResources().getColorStateList(R.color.colorAccent)
                 );
                 mTrailerButton.setOnClickListener(new View.OnClickListener() {
                     @Override

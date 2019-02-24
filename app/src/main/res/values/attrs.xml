@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="primaryColor" format="reference"/>
+    <attr name="primaryDarkColor" format="reference"/>
+    <attr name="primaryLightColor" format="reference" />
+    <attr name="accentColor" format="reference" />
+    <attr name="primaryTextColor" format="reference" />
+    <attr name="secondaryTextColor" format="reference" />
+    <attr name="buttonTextColor" format="reference" />
+    <attr name="dividerColor" format="reference" />
+    <attr name="popupTheme" format="reference" />
+</resources>

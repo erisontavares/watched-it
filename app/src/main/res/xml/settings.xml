@@ -9,4 +9,9 @@
         android:entryValues="@array/settings_sort_values"
         android:key="@string/settings_sort_key"
         android:title="@string/settings_sort_title" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="@string/settings_theme_key"
+        android:title="@string/settings_theme_title" />
 </PreferenceScreen>
