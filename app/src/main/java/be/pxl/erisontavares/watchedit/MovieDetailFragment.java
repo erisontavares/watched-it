@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.AsyncTask;
 
@@ -113,11 +114,13 @@ public class MovieDetailFragment extends Fragment {
                     .error(R.drawable.ic_image_placeholder)
                     .into(backdropImageView);
 
+            Resources resources = getContext().getResources();
+
             mTrailerButton = rootView.findViewById(R.id.trailer_button);
             mTrailerButton.setEnabled(false);
             mTrailerButton.setText(getString(R.string.no_trailer));
             mTrailerButton.setBackgroundTintList(
-                    getContext().getResources().getColorStateList(R.color.colorDivider)
+                    isDarkTheme ? resources.getColorStateList(R.color.darkColorDivider) : resources.getColorStateList(R.color.colorDivider)
             );
         }
 

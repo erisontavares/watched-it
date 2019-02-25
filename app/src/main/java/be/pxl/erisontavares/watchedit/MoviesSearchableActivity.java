@@ -18,6 +18,7 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.net.URL;
 
+import be.pxl.erisontavares.watchedit.model.Movie;
 import be.pxl.erisontavares.watchedit.model.SearchResult;
 import be.pxl.erisontavares.watchedit.utilities.NetworkUtils;
 
@@ -26,9 +27,12 @@ public class MoviesSearchableActivity extends BaseActivity implements SearchView
     private TextView mErrorTextView;
     private ProgressBar mLoadingProgress;
     private RecyclerView mMoviesRecyclerView;
+
     public final static String RECYCLER_STATE_KEY = "recycler_view_state";
+    public final static String SEARCH_RESULT_KEY = "search_result_key";
 
     private MoviesSearchAdapter mMoviesSearchAdapter;
+    private SearchResult<Movie> mMoviesSearchResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,14 +53,20 @@ public class MoviesSearchableActivity extends BaseActivity implements SearchView
         mMoviesRecyclerView.setLayoutManager(moviesLayoutManager);
         mMoviesRecyclerView.setHasFixedSize(true);
 
+        mMoviesSearchAdapter = new MoviesSearchAdapter(isDarkTheme);
+        mMoviesRecyclerView.setAdapter(mMoviesSearchAdapter);
+
         if (savedInstanceState != null) {
             Parcelable listState = savedInstanceState.getParcelable(RECYCLER_STATE_KEY);
             Log.d("Search RV", "saved state is not null!!!");
             mMoviesRecyclerView.getLayoutManager().onRestoreInstanceState(listState);
-        }
+            SearchResult<Movie> savedSearchResults = savedInstanceState.getParcelable(SEARCH_RESULT_KEY);
 
-        mMoviesSearchAdapter = new MoviesSearchAdapter(isDarkTheme);
-        mMoviesRecyclerView.setAdapter(mMoviesSearchAdapter);
+            if (savedSearchResults != null) {
+                mMoviesSearchResult = savedSearchResults;
+                mMoviesSearchAdapter.movies = mMoviesSearchResult.getResults();
+            }
+        }
     }
 
     @Override
@@ -64,6 +74,7 @@ public class MoviesSearchableActivity extends BaseActivity implements SearchView
         super.onSaveInstanceState(outState);
         Parcelable listState = mMoviesRecyclerView.getLayoutManager().onSaveInstanceState();
         outState.putParcelable(RECYCLER_STATE_KEY, listState);
+        outState.putParcelable(SEARCH_RESULT_KEY, mMoviesSearchResult);
     }
 
     @Override
@@ -134,6 +145,7 @@ public class MoviesSearchableActivity extends BaseActivity implements SearchView
             SearchResult searchResult = NetworkUtils.getMoviesSearchResultFromJson(result);
 
             mMoviesSearchAdapter.movies = searchResult.getResults();
+            mMoviesSearchResult = searchResult;
             mMoviesSearchAdapter.notifyDataSetChanged();
         }
 

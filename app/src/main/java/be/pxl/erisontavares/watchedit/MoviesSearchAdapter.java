@@ -67,7 +67,7 @@ public class MoviesSearchAdapter extends RecyclerView.Adapter<MoviesSearchAdapte
             moviesSearchViewHolder.mAddButton.setText(R.string.movie_already_added);
             moviesSearchViewHolder.mAddButton.setEnabled(false);
             moviesSearchViewHolder.mAddButton.setBackgroundTintList(
-                    resources.getColorStateList(R.color.colorDivider)
+                    mIsDarkTheme ? resources.getColorStateList(R.color.darkColorDivider) : resources.getColorStateList(R.color.colorDivider)
             );
         } else {
             moviesSearchViewHolder.mAddButton.setText(R.string.add);

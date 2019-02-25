@@ -60,7 +60,8 @@ public class MovieDetailActivity extends BaseActivity {
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             Log.d("config changed", "landscape");
-            navigateUpTo(new Intent(this, MovieListActivity.class));
+//            navigateUpTo(new Intent(this, MovieListActivity.class));
+            onBackPressed();
         }
     }
 
@@ -74,7 +75,7 @@ public class MovieDetailActivity extends BaseActivity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            navigateUpTo(new Intent(this, MovieListActivity.class));
+            onBackPressed();
             return true;
         }
         return super.onOptionsItemSelected(item);
