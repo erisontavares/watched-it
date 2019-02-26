@@ -42,4 +42,6 @@
     <string name="settings_theme_title">Dark theme</string>
     <string name="settings_theme_summary">Enable or disable dark theme</string>
     <string name="settings_theme_key">key_app_theme</string>
+
+    <string name="empty_movie_list">No movies yet. \nPress + on the top to add one.</string>
 </resources>

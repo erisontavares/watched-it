@@ -18,6 +18,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import be.pxl.erisontavares.watchedit.data.WatchedItContract;
 import be.pxl.erisontavares.watchedit.utilities.Helpers;
@@ -42,6 +44,9 @@ public class MovieListActivity extends BaseActivity implements LoaderManager.Loa
     private RecyclerView mMoviesList;
     private MoviesAdapter mMoviesAdapter;
 
+    private FrameLayout mRecyclerViewContainer;
+    private FrameLayout mEmptyListContainer;
+
     private String sortOrderValue;
 
     @Override
@@ -62,6 +67,9 @@ public class MovieListActivity extends BaseActivity implements LoaderManager.Loa
         }
 
         getSupportLoaderManager().initLoader(URL_LOADER, null, this);
+
+        mRecyclerViewContainer = findViewById(R.id.recycler_view_container);
+        mEmptyListContainer = findViewById(R.id.empty_list_container);
 
         mMoviesList = findViewById(R.id.movies_recycler_view);
         LinearLayoutManager moviesLayoutManager = new LinearLayoutManager(this,
@@ -132,6 +140,13 @@ public class MovieListActivity extends BaseActivity implements LoaderManager.Loa
 
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor cursor) {
+        if (cursor.getCount() > 0) {
+            mRecyclerViewContainer.setVisibility(View.VISIBLE);
+            mEmptyListContainer.setVisibility(View.INVISIBLE);
+        } else {
+            mRecyclerViewContainer.setVisibility(View.INVISIBLE);
+            mEmptyListContainer.setVisibility(View.VISIBLE);
+        }
         mMoviesAdapter.swapCursor(cursor);
     }
 
