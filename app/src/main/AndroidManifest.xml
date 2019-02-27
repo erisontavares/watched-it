@@ -22,8 +22,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SeriesActivity" />
         <activity android:name=".MoviesSearchableActivity" />
 
         <provider

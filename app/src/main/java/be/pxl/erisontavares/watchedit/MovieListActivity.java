@@ -24,20 +24,8 @@ import android.widget.FrameLayout;
 import be.pxl.erisontavares.watchedit.data.WatchedItContract;
 import be.pxl.erisontavares.watchedit.utilities.Helpers;
 
-/**
- * An activity representing a list of Movies. This activity
- * has different presentations for handset and tablet-size devices. On
- * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link MovieDetailActivity} representing
- * item details. On tablets, the activity presents the list of items and
- * item details side-by-side using two vertical panes.
- */
 public class MovieListActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<Cursor>, SharedPreferences.OnSharedPreferenceChangeListener {
 
-    /**
-     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-     * device.
-     */
     private boolean mTwoPane;
 
     private static final int URL_LOADER = 100;
@@ -46,6 +34,7 @@ public class MovieListActivity extends BaseActivity implements LoaderManager.Loa
 
     private FrameLayout mRecyclerViewContainer;
     private FrameLayout mEmptyListContainer;
+    private FrameLayout mLoadingContainer;
 
     private String sortOrderValue;
 
@@ -70,6 +59,8 @@ public class MovieListActivity extends BaseActivity implements LoaderManager.Loa
 
         mRecyclerViewContainer = findViewById(R.id.recycler_view_container);
         mEmptyListContainer = findViewById(R.id.empty_list_container);
+        mLoadingContainer = findViewById(R.id.loading_container);
+        mLoadingContainer.setVisibility(View.VISIBLE);
 
         mMoviesList = findViewById(R.id.movies_recycler_view);
         LinearLayoutManager moviesLayoutManager = new LinearLayoutManager(this,
@@ -141,9 +132,11 @@ public class MovieListActivity extends BaseActivity implements LoaderManager.Loa
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor cursor) {
         if (cursor.getCount() > 0) {
-            mRecyclerViewContainer.setVisibility(View.VISIBLE);
+            mLoadingContainer.setVisibility(View.INVISIBLE);
             mEmptyListContainer.setVisibility(View.INVISIBLE);
+            mRecyclerViewContainer.setVisibility(View.VISIBLE);
         } else {
+            mLoadingContainer.setVisibility(View.INVISIBLE);
             mRecyclerViewContainer.setVisibility(View.INVISIBLE);
             mEmptyListContainer.setVisibility(View.VISIBLE);
         }

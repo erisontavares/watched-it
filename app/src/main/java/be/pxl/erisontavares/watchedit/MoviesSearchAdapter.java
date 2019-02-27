@@ -36,7 +36,7 @@ public class MoviesSearchAdapter extends RecyclerView.Adapter<MoviesSearchAdapte
     private boolean mIsDarkTheme;
 
     public MoviesSearchAdapter(boolean isDarkTheme) {
-        this.movies = new ArrayList<Movie>();
+        this.movies = new ArrayList<>();
         this.mIsDarkTheme = isDarkTheme;
     }
 

@@ -25,6 +25,7 @@
         android:id="@+id/recycler_view_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="invisible"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <include layout="@layout/movie_list" />
@@ -34,6 +35,7 @@
         android:id="@+id/empty_list_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="invisible"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <android.support.v7.widget.AppCompatTextView
@@ -44,6 +46,21 @@
             android:textAlignment="center"
             android:textSize="@dimen/font_size_empty_list"
             app:fontFamily="@font/permanent_marker_regular" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/loading_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ProgressBar
+            android:id="@+id/movie_list_loading"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical" />
     </FrameLayout>
 
 </android.support.design.widget.CoordinatorLayout>

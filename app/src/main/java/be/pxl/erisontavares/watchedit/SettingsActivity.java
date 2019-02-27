@@ -23,7 +23,6 @@ public class SettingsActivity extends BaseActivity implements SharedPreferences.
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-//        setAppTheme(isDarkTheme);
         sharedPref.registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -58,11 +57,6 @@ public class SettingsActivity extends BaseActivity implements SharedPreferences.
         if (key.equals(getString(R.string.settings_theme_key))) {
             Log.d("Settings", "Theme changed");
             recreate();
-//            Bundle savedInstanceState = new Bundle();
-//            onSaveInstanceState(savedInstanceState);
-//            super.onDestroy();
-//
-//            onCreate(savedInstanceState);
         }
     }
 }

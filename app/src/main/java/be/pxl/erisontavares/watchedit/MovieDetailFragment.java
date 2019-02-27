@@ -31,17 +31,8 @@ import be.pxl.erisontavares.watchedit.model.VideoSearchResult;
 import be.pxl.erisontavares.watchedit.utilities.Helpers;
 import be.pxl.erisontavares.watchedit.utilities.NetworkUtils;
 
-/**
- * A fragment representing a single Movie detail screen.
- * This fragment is either contained in a {@link MovieListActivity}
- * in two-pane mode (on tablets) or a {@link MovieDetailActivity}
- * on handsets.
- */
 public class MovieDetailFragment extends Fragment {
-    /**
-     * The fragment argument representing the item ID that this fragment
-     * represents.
-     */
+
     public static final String MOVIE_ITEM = "movie_item";
     public static final String IS_DARK_THEME = "is_dark_theme";
 
