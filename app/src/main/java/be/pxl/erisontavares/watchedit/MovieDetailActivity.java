@@ -53,7 +53,6 @@ public class MovieDetailActivity extends BaseActivity {
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             Log.d("config changed", "landscape");
-//            navigateUpTo(new Intent(this, MovieListActivity.class));
             onBackPressed();
         }
     }

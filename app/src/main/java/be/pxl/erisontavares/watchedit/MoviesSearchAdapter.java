@@ -153,10 +153,12 @@ public class MoviesSearchAdapter extends RecyclerView.Adapter<MoviesSearchAdapte
             mOverview.setText(movie.getOverview());
             mVoteAverage.setText(String.valueOf(movie.getVoteAverage()));
 
-            // TODO: Fix parse error when release date is null
-            String parsedReleaseDate = Helpers.formateDateFromstring(Movie.RELEASE_DATE_FORMAT, "dd MMM yyyy", movie.getReleaseDate());
-
-            mReleaseDate.setText(itemView.getContext().getString(R.string.released_on, parsedReleaseDate));
+            if (!movie.getReleaseDate().isEmpty()) {
+                String parsedReleaseDate = Helpers.formateDateFromstring(Movie.RELEASE_DATE_FORMAT, "dd MMM yyyy", movie.getReleaseDate());
+                mReleaseDate.setText(itemView.getContext().getString(R.string.released_on, parsedReleaseDate));
+            } else {
+                mReleaseDate.setText(R.string.no_release_date);
+            }
 
             URL imageUrl = NetworkUtils.buildImageUrl(NetworkUtils.POSTER_SIZE_185, movie.getPosterPath());
             Picasso.get()

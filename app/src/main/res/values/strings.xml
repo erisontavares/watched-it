@@ -19,6 +19,7 @@
 
     <string name="star_icon_description">star icon</string>
     <string name="released_on">Released on %1$s</string>
+    <string name="no_release_date">Release date not available</string>
     <string name="add">Add</string>
     <string name="remove">Remove</string>
     <string name="movie_already_added">Already added</string>

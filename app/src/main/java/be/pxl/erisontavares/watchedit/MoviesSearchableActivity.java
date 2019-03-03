@@ -58,7 +58,6 @@ public class MoviesSearchableActivity extends BaseActivity implements SearchView
 
         if (savedInstanceState != null) {
             Parcelable listState = savedInstanceState.getParcelable(RECYCLER_STATE_KEY);
-            Log.d("Search RV", "saved state is not null!!!");
             mMoviesRecyclerView.getLayoutManager().onRestoreInstanceState(listState);
             SearchResult<Movie> savedSearchResults = savedInstanceState.getParcelable(SEARCH_RESULT_KEY);
 
@@ -140,13 +139,13 @@ public class MoviesSearchableActivity extends BaseActivity implements SearchView
             } else {
                 mMoviesRecyclerView.setVisibility(View.VISIBLE);
                 mErrorTextView.setVisibility(View.INVISIBLE);
+
+                SearchResult searchResult = NetworkUtils.getMoviesSearchResultFromJson(result);
+
+                mMoviesSearchAdapter.movies = searchResult.getResults();
+                mMoviesSearchResult = searchResult;
+                mMoviesSearchAdapter.notifyDataSetChanged();
             }
-
-            SearchResult searchResult = NetworkUtils.getMoviesSearchResultFromJson(result);
-
-            mMoviesSearchAdapter.movies = searchResult.getResults();
-            mMoviesSearchResult = searchResult;
-            mMoviesSearchAdapter.notifyDataSetChanged();
         }
 
         @Override

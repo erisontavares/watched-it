@@ -67,7 +67,7 @@ public class MovieDetailFragment extends Fragment {
                 URL videoSearchUrl = NetworkUtils.buildMovieVideosUrl(String.valueOf(mMovieItem.getId()));
                 new VideosQueryTask().execute(videoSearchUrl);
             } catch (Exception e) {
-                Log.d("Error", e.getMessage());
+                Log.e("MovieDetailFragment", e.getMessage());
             }
         }
     }
@@ -91,9 +91,12 @@ public class MovieDetailFragment extends Fragment {
 
             ImageView backdropImageView = rootView.findViewById(R.id.movie_backdrop);
 
-            // TODO: Fix parse error when release date is null
-            String parsedReleaseDate = Helpers.formateDateFromstring(Movie.RELEASE_DATE_FORMAT, "dd MMM yyyy", mMovieItem.getReleaseDate());
-            ((TextView) rootView.findViewById(R.id.movie_detail_release)).setText(getContext().getString(R.string.released_on, parsedReleaseDate));
+            if (!mMovieItem.getReleaseDate().isEmpty()) {
+                String parsedReleaseDate = Helpers.formateDateFromstring(Movie.RELEASE_DATE_FORMAT, "dd MMM yyyy", mMovieItem.getReleaseDate());
+                ((TextView) rootView.findViewById(R.id.movie_detail_release)).setText(getContext().getString(R.string.released_on, parsedReleaseDate));
+            } else {
+                ((TextView) rootView.findViewById(R.id.movie_detail_release)).setText(getContext().getString(R.string.no_release_date));
+            }
 
             ((TextView) rootView.findViewById(R.id.movie_detail_vote_average)).setText(String.valueOf(mMovieItem.getVoteAverage()));
 

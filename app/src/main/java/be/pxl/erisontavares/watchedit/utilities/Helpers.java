@@ -30,7 +30,6 @@ public final class Helpers {
         return outputDate;
     }
 
-    // TODO: Refactor this method to arrays values
     public static String getListSortTypeBySetting(String value) {
         switch (value) {
             case "1":
